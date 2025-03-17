@@ -20,7 +20,18 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    /* Paths */
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "include": ["src"]
+  "include": [
+		"src/**/*.js",
+		"src/**/*.jsx",
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/vite-env.d.ts"
+	],
 }
