@@ -17,36 +17,44 @@ const colors = {
 
 const typography = {
     title1: css`
-        font-size: 32px;
-        font-weight: bold;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
     `,
     title2: css`
-        font-size: 26px;
-        font-weight: bold;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 24px;
     `,
     title3: css`
         font-size: 18px;
         font-weight: 600;
+        line-height: 18px;
     `,
     body1: css`
-        font-size: 16px;
-        font-weight: 400;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 20px;
     `,
     body2: css`
-        font-size: 16px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 14px;
     `,
     body2Bold: css`
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
+        line-height: 14px;
     `,
     caption: css`
-        font-size: 14px;
-        font-weight: 400;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
     `,
     small: css`
-        font-size: 12px;
-        font-weight: 400;
+        font-size: 10px;
+        font-weight: 500;
+        line-height: 10px;
     `
 };
 
