@@ -15,13 +15,13 @@ export const HeaderComponent = styled.header`
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 22px;
+      gap: 56px;
     }
   }
 `;
 
 export const NavList = styled.li<{ selected: boolean; }>`
-    padding: 4px 0;
+    height: 27px;
     border-bottom: 1px solid ${({ selected, theme }) => selected ? theme.colors.primary : theme.colors.white};
     ${({ theme }) => theme.typography.body1}
     cursor: pointer;

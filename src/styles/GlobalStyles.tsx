@@ -20,6 +20,10 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
     font-family: "Noto Sans KR", sans-serif;
   }
+  
+  input, input::placeholder {
+    font-family: "Noto Sans KR", sans-serif;
+  }
 `;
 
 export default GlobalStyle;
