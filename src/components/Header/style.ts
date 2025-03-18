@@ -5,13 +5,17 @@ export const HeaderComponent = styled.header`
   align-items: center;
   padding: 24px 160px 24px;
   > h1 {
+    width: 33%;
     ${({ theme }) => theme.typography.title1};
     color: ${({ theme }) => theme.colors.text.primary};
   }
   > nav  {
+    width: 33%;
     > ul {
-        display: flex;
-        align-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
     }
   }
 `;

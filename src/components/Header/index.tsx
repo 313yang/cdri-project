@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TabhostType } from "@/defines/global";
-import { HeaderComponent, NavList, } from "./style";
+import { HeaderComponent, NavList } from "./style";
 
 export const Header = () => {
     const [tabhost, setTabhost] = useState<TabhostType>(TabhostType.Search);
@@ -11,10 +11,10 @@ export const Header = () => {
         </h1>
         <nav>
             <ul>
-                <NavList selected={tabhost === TabhostType.Search}>
+                <NavList selected={tabhost === TabhostType.Search} onClick={() => setTabhost(TabhostType.Search)}>
                     도서 검색
                 </NavList>
-                <NavList selected={tabhost === TabhostType.Favorite}>
+                <NavList selected={tabhost === TabhostType.Favorite} onClick={() => setTabhost(TabhostType.Favorite)}>
                     내가 찜한 책
                 </NavList>
             </ul>
