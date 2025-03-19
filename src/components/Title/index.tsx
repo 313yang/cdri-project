@@ -1,8 +1,16 @@
-import { SearchBar } from "../SearchBar";
+import { useLocation } from "react-router-dom";
+import { SearchBar } from "@/components/SearchBar";
+import { TitleText } from "@/utils/consts";
 
-export const Title = () =>{
-    return <div>
-        <h2>도서 검색</h2>
-        <SearchBar />
+/** 현재 경로에 따라 타이틀을 출력합니다. */
+export const Title = () => {
+    const { pathname } = useLocation();
+
+    const title = TitleText[pathname];
+    return (
+        <div>
+            <h2>{title}</h2>
+            {title === TitleText["/"] && <SearchBar />}
         </div>
-}
+    );
+};

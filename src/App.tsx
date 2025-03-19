@@ -1,21 +1,21 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Header } from "@/components/Header";
-import { TabhostProvider } from "@/context/useTabhost";
-import { Home } from "@/pages/Home";
+import { MainRoutes } from "./components/router";
 
 // Create a client
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TabhostProvider>
+    <Router>
+      <QueryClientProvider client={queryClient}>
         <Header />
-        <Home />
-      </TabhostProvider>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+        <MainRoutes />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </Router>
   );
 }
 
