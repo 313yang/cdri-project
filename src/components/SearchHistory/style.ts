@@ -8,7 +8,7 @@ export const SearchHistoryWrapper = styled.ul`
     margin-top: -25px;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    padding: 25px 31px 16px 51px;
-    gap: 6px;
+    padding: 38px 25px 22px 51px;
+    gap: 12px;
 
 `;

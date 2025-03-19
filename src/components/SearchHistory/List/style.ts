@@ -9,3 +9,10 @@ export const SearchHistoryListWrapper = styled.li`
         color: ${({ theme }) => theme.colors.text.subtitle};
     }
 `
+export const DeleteButton = styled.button`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+`

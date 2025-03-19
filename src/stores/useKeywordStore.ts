@@ -3,10 +3,10 @@ import { persist } from "zustand/middleware";
 
 interface KeywordStore {
     keywordList: string[];
-    actions: {
-        setKeywordList: (keyword: string) => void;
-        deleteKeyword: (keyword: string) => void;
-    };
+
+    setKeywordList: (keyword: string) => void;
+    deleteKeyword: (keyword: string) => void;
+
 }
 
 /**
@@ -16,25 +16,27 @@ const useKeywordStore = create(
     persist<KeywordStore>(
         (set, get) => ({
             keywordList: [],
-            actions: {
-                setKeywordList: (keyword: string) => {
-                    const currentList = get().keywordList;
-                    const newList = [...currentList];
-                    // 등록된 검색어가 8개 이상인 경우, 배열 첫번째 요소를 삭제합니다.
-                    if (newList.length >= 8) newList.shift();
 
-                    // 새로운 키워드를 배열 마지막 요소에 추가합니다.
-                    newList.push(keyword);
+            /** 검색어를 리스트에 추가합니다. */
+            setKeywordList: (keyword: string) => {
+                const currentList = get().keywordList;
+                const newList = [...currentList];
+                // 등록된 검색어가 8개 이상인 경우, 배열 첫번째 요소를 삭제합니다.
+                if (newList.length >= 8) newList.shift();
 
-                    set({ keywordList: newList });
-                },
-                deleteKeyword: (keyword: string) => {
-                    const currentList = get().keywordList;
-                    const newList = currentList.filter((x) => x !== keyword);
+                // 새로운 키워드를 배열 마지막 요소에 추가합니다.
+                newList.push(keyword);
 
-                    set({ keywordList: newList });
-                },
-            }
+                set({ keywordList: newList });
+            },
+            /** 검색어를 삭제합니다. */
+            deleteKeyword: (keyword: string) => {
+                const currentList = get().keywordList;
+                const newList = currentList.filter((x) => x !== keyword);
+                console.log("new?", newList);
+                set({ keywordList: newList });
+            },
+
         }),
         {
             name: "Keyword",
@@ -45,5 +47,8 @@ const useKeywordStore = create(
 export const useKeywordState = () =>
     useKeywordStore((state) => state.keywordList);
 
-export const useKeywordAction = () =>
-    useKeywordStore((state) => state.actions);
+export const setKeywordListAction = () =>
+    useKeywordStore((state) => state.setKeywordList);
+
+export const deleteKeywordAction = () =>
+    useKeywordStore((state) => state.deleteKeyword);

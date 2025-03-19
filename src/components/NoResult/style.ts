@@ -6,6 +6,7 @@ export const NoResultContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     gap: 24px;
+    margin-top: 120px;
     > p {
         ${({theme})=>theme.typography.caption}
         color: ${({theme})=>theme.colors.text.secondary};

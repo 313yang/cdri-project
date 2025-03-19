@@ -4,6 +4,7 @@ export const HeaderComponent = styled.header`
   display: flex;
   align-items: center;
   padding: 24px 160px 24px;
+  height: 80px;
   > h1 {
     width: 33%;
     ${({ theme }) => theme.typography.title1};

@@ -1,14 +1,14 @@
 import { Icon } from "@/components/ui/Icons";
-import { SearchHistoryListWrapper } from "./style";
-import { useKeywordAction } from "@/stores/useKeywordStore";
+import { deleteKeywordAction } from "@/stores/useKeywordStore";
+import { SearchHistoryListWrapper, DeleteButton } from "./style";
 
 export const SearchHistoryList = ({ keyword }: { keyword: string; }) => {
-    const { deleteKeyword } = useKeywordAction();
+    const deleteKeyword = deleteKeywordAction();
 
     return <SearchHistoryListWrapper>
         <p>{keyword}</p>
-        <button onClick={() => deleteKeyword(keyword)}>
-            <img src={Icon.Arrow} alt="삭제 아이콘" />
-        </button>
+        <DeleteButton onClick={() => deleteKeyword(keyword)}>
+            <img src={Icon.Close} alt="삭제 아이콘" />
+        </DeleteButton>
     </SearchHistoryListWrapper>;
 };
