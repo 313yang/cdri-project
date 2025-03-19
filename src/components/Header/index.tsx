@@ -1,9 +1,9 @@
-import { useState } from "react";
 import { TabhostType } from "@/defines/global";
+import { useTabhost } from "@/context/useTabhost";
 import { HeaderComponent, NavList } from "./style";
 
 export const Header = () => {
-    const [tabhost, setTabhost] = useState<TabhostType>(TabhostType.Search);
+    const { tabhost, setTabhost } = useTabhost();
 
     return <HeaderComponent>
         <h1>
