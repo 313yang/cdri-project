@@ -1,21 +1,31 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import mainRouter from '@/router';
 import { Header } from "@/components/Header";
-import { MainRoutes } from "./components/router";
-
+import { MainContainer } from "@/styles/main.styled";
 // Create a client
 const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Router>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <Router>
         <Header />
-        <MainRoutes />
-        <ReactQueryDevtools />
-      </QueryClientProvider>
-    </Router>
+        <MainContainer>
+          <Routes>
+            {mainRouter.map(route => (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={<route.component />}
+              />
+            ))}
+          </Routes>
+        </MainContainer>
+      </Router>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 
