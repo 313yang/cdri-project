@@ -1,5 +1,3 @@
-import { TabhostType } from "@/defines/global";
-import { useTabhost } from "@/context/useTabhost";
 import { HeaderComponent, NavList } from "./style";
 import { useNavigate } from "react-router-dom";
 
