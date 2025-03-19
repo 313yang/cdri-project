@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { PageTitles } from "@/utils/consts";
+import { SearchHistory } from "../SearchHistory";
 
 /** 현재 경로에 따라 타이틀을 출력합니다. */
 export const Title = () => {
@@ -12,7 +13,10 @@ export const Title = () => {
     return (
         <div>
             <h2>{currentText.title}</h2>
-            {pathname === "/" && <SearchBar />}
+            {pathname === "/" && <div>
+                <SearchBar />
+                <SearchHistory />
+            </div>}
             <p>{currentText.result} 총 <strong>0</strong>건</p>
         </div>
     );

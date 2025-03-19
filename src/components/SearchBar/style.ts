@@ -1,0 +1,15 @@
+import styled from "styled-components";
+
+export const SearchBarContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 24px;
+`;
+export const InputContainer = styled.div`
+    position: relative;
+    > img {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+`;

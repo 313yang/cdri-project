@@ -1,8 +1,24 @@
-import { Icon } from "./Icons";
+import React from "react";
 import { InputStyled } from "./input.styled";
-export const Input = () => {
-    return <InputStyled>
-        <img src={Icon.Search} alt="돋보기 아이콘" />
-        <input placeholder="검색어를 입력하세요" />
-    </InputStyled>;
+
+interface InputProps {
+    value: string | number;
+
+    /** placeholder */
+    placeholder?: string;
+    /** onChange 함수 */
+    onChange: (value: string) => void;
+}
+export const Input = ({ value, placeholder, onChange }: InputProps) => {
+
+    const handleonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        onChange(value);
+    };
+
+    return <InputStyled
+        value={value}
+        placeholder={placeholder}
+        onChange={handleonChange}
+    />;
 };

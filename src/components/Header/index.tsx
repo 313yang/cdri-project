@@ -1,5 +1,5 @@
 import { HeaderComponent, NavList } from "./style";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 /**
  * 최상단의 nav 리스트가 포함된 Header 컴포넌트 입니다.
@@ -7,8 +7,7 @@ import { useNavigate } from "react-router-dom";
  */
 export const Header = () => {
     const navigate = useNavigate();
-    const pathname = window.location.pathname;
-    console.log(pathname);
+    const { pathname } = useLocation();
 
     return <HeaderComponent>
         <h1>CERTICO BOOKS</h1>
