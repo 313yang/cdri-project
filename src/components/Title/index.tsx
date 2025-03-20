@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { TitleContainer } from "./style";
 
 /** 현재 경로에 따라 타이틀을 출력합니다. */
-export const Title = () => {
+export const Title = ({ totalBooks }: { totalBooks: number; }) => {
     const { pathname } = useLocation();
     const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
     const searchRef = useRef<HTMLDivElement>(null); // search div 참조
@@ -40,7 +40,7 @@ export const Title = () => {
             )}
             <span>
                 <p>{currentText.result}</p>
-                <p>총 <strong>0</strong>건</p>
+                <p>총 <strong>{totalBooks}</strong>건</p>
             </span>
 
         </TitleContainer>
