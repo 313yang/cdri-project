@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const SearchDetailPopupContent = styled.div`
 display: flex;
 flex-direction: column;
-gap: 20px;
+gap: 16px;
 > div {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     > input {
+        width: 208px;
         padding: 4px 10px;
-        width: 100%;
         &, &:active, &:focus {
             border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
         }

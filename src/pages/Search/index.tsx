@@ -4,6 +4,7 @@ import { NoResult } from "@/components/NoResult";
 import { Title } from "@/components/Title";
 import fetchBooks from "@/querys/useFetchBooks";
 import { useKeywordState } from "@/stores/useKeywordStore";
+import { BookListWrapper } from "../../styles/bookWrapper.styled";
 
 export const SearchPage = () => {
     const keywordList = useKeywordState();
@@ -24,11 +25,11 @@ export const SearchPage = () => {
     return <>
         <Title totalBooks={totalBooks} />
         {books.length > 0 ?
-            <>
+            <BookListWrapper>
                 {books.map(book => (
                     <BookList key={book.isbn} book={book} />
                 ))}
-            </>
+            </BookListWrapper>
             : <NoResult desc="검색된 결과가 없습니다." />
         }
     </>;

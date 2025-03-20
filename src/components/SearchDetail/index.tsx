@@ -16,7 +16,7 @@ export const SearchDetailPopup = ({ onClose }: { onClose(): void; }) => {
                 <Dropdown options={selectOptions} onSelect={() => { }} />
                 <Input placeholder="검색어 입력" value="" onChange={() => { }} />
             </div>
-            <Button text="검색하기" onClick={() => { }} />
+            <Button onClick={() => { }} >검색하기</Button>
         </SearchDetailPopupContent>
     </Popup>;
 };

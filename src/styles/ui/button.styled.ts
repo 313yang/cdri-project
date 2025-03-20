@@ -12,15 +12,18 @@ export const ButtonStyled = styled.button<{
     color: ${({ color, theme }) => !color ? theme.colors.white : theme.colors.text[color]};
     ${({ theme }) => theme.typography.caption}
     padding: 14px;
-    border-radius: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 
     &.size-small {
-        width:  70px;
-        padding: 8px 6px;
-        font-size: 14px;
+        padding: 10px;
+        ${({ theme }) => theme.typography.body2}
     }
     &.size-medium {
-        width: 120px;
+        width: 115px;
     }
     &.size-large {
         width: 240px;

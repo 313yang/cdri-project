@@ -1,5 +1,5 @@
 import { DropdownOptionType } from "@/defines/global";
-import { DropdownContainer, DropdownOptions, DropdownSelectBox } from "@/styles/ui/dropdown.styled";
+import { DropdownContainer, DropdownOptions } from "@/styles/ui/dropdown.styled";
 import { useState } from "react";
 import { Icon } from "./Icons";
 
@@ -27,11 +27,9 @@ export const Dropdown = ({
         onSelect(option.target); // 선택된 옵션 전달
     };
 
-    return <DropdownContainer>
-        <DropdownSelectBox onClick={toggleDropdown}>
-            <span >{selectedOption.name}</span>
-            <img src={Icon.Arrow} alt="화살표 아이콘" />
-        </DropdownSelectBox>
+    return <DropdownContainer onClick={toggleDropdown}>
+        <span >{selectedOption.name}</span>
+        <img src={Icon.Arrow} alt="화살표 아이콘" />
         {isOpen && (
             <DropdownOptions className="select-options">
                 {options.map(option => (

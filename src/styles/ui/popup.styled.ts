@@ -12,7 +12,7 @@ right: ${({ right }) => right}px;
 width: ${({ width }) => width}px;
 height: ${({ height }) => !height ? "fit-content" : `${height}px`};
 background-color: ${({ theme }) => theme.colors.white};
-box-shadow: 0.5px 0.4px 13px #d3d3d3;
+box-shadow: 0px 4px 14px rgba(151,151,151,0.15);
 border-radius: 12px;
 padding: 12px;
 display: flex;

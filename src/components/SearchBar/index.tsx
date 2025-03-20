@@ -7,11 +7,12 @@ import { SearchDetailPopup } from "../SearchDetail";
 import { Button } from "../ui/Button";
 
 interface SearchBarProps {
+    isSearchFocused: boolean; // 검색기록 창 열려있는지 여부.
     onFocus: () => void,
 }
 
 /** 검색창 컴포넌트 입니다. */
-export const SearchBar = ({ onFocus }: SearchBarProps) => {
+export const SearchBar = ({ isSearchFocused, onFocus }: SearchBarProps) => {
     const setKeywordList = setKeywordListAction();
     const [search, setSearch] = useState<string>("");
     const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -22,7 +23,7 @@ export const SearchBar = ({ onFocus }: SearchBarProps) => {
     };
 
     return <SearchBarContainer>
-        <InputContainer>
+        <InputContainer isSearchFocused={isSearchFocused}>
             <img src={Icon.Search} alt="돋보기 아이콘" />
             <Input
                 value={search}
@@ -33,13 +34,14 @@ export const SearchBar = ({ onFocus }: SearchBarProps) => {
             />
         </InputContainer>
         <Button
-            text="상세검색"
             size="small"
             color="subtitle"
             border="subtitle"
             bgColor="white"
             onClick={() => setShowPopup(true)}
-        />
+        >
+            상세검색
+        </Button>
         {showPopup && <SearchDetailPopup onClose={() => setShowPopup(false)} />}
     </SearchBarContainer>;
 };

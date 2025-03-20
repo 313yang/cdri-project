@@ -1,20 +1,17 @@
 import styled from "styled-components";
 
 export const DropdownContainer = styled.div`
-    ${({ theme }) => theme.typography.caption}
+    ${({ theme }) => theme.typography.body2Bold}
     position: relative;
     background-color: transparent;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
-    width: 180px;
+    width: 100px;
     border-radius: 2px;
     cursor: pointer;
-`;
-
-export const DropdownSelectBox = styled.div`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 10px;
 `;
 
 export const DropdownOptions = styled.ul`

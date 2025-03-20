@@ -38,7 +38,7 @@ const typography = {
     `,
     body2: css`
         font-size: 14px;
-        font-weight: bold;
+        font-weight: 500;
         line-height: 14px;
     `,
     body2Bold: css`

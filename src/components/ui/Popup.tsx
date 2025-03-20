@@ -15,7 +15,7 @@ export const Popup = ({
     children,
     top = 0,
     right = 0,
-    width = 400,
+    width = 360,
     height,
 }: PopupProps) => {
     return <PopupContainer

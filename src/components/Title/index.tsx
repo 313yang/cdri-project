@@ -34,7 +34,7 @@ export const Title = ({ totalBooks }: { totalBooks: number; }) => {
             <h2>{currentText.title}</h2>
             {pathname === "/" && (
                 <div ref={searchRef}>
-                    <SearchBar onFocus={() => setIsSearchFocused(true)} />
+                    <SearchBar isSearchFocused={isSearchFocused} onFocus={() => setIsSearchFocused(true)} />
                     {isSearchFocused && <SearchHistory />}
                 </div>
             )}
