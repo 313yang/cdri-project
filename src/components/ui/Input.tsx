@@ -1,5 +1,5 @@
 import React from "react";
-import { InputStyled } from "./input.styled";
+import { InputStyled } from "@/styles/ui/input.styled";
 
 interface InputProps {
     /** 입력값 */

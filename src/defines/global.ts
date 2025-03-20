@@ -1,5 +1,5 @@
-/** Hearder 내 Navigator의 Tabhost 타입입니다. */
-export enum TabhostType {
-	Search = 1,
-	Favorite = 2,
+/** 드롭다운 옵션 타입입니다. */
+export interface DropdownOptionType {
+	target: string;
+	name: string;
 }

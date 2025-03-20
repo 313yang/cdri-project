@@ -3,6 +3,8 @@ import { Icon } from "../ui/Icons";
 import { Input } from "../ui/Input";
 import { InputContainer, SearchBarContainer } from "./style";
 import { setKeywordListAction } from "@/stores/useKeywordStore";
+import { SearchDetailPopup } from "../SearchDetail";
+import { Button } from "../ui/Button";
 
 interface SearchBarProps {
     onFocus: () => void,
@@ -10,8 +12,9 @@ interface SearchBarProps {
 
 /** 검색창 컴포넌트 입니다. */
 export const SearchBar = ({ onFocus }: SearchBarProps) => {
-    const [search, setSearch] = useState<string>("");
     const setKeywordList = setKeywordListAction();
+    const [search, setSearch] = useState<string>("");
+    const [showPopup, setShowPopup] = useState<boolean>(false);
 
     const handleSearch = () => {
         setKeywordList(search);
@@ -29,6 +32,14 @@ export const SearchBar = ({ onFocus }: SearchBarProps) => {
                 onEnter={handleSearch}
             />
         </InputContainer>
-        <button onClick={handleSearch} onMouseDown={(e) => e.preventDefault()}  >상세검색</button>
+        <Button
+            text="상세검색"
+            size="small"
+            color="subtitle"
+            border="subtitle"
+            bgColor="white"
+            onClick={() => setShowPopup(true)}
+        />
+        {showPopup && <SearchDetailPopup onClose={() => setShowPopup(false)} />}
     </SearchBarContainer>;
 };
