@@ -24,3 +24,16 @@ export interface BookType {
     /** 도서 판매 상태 정보 (정상, 품절, 절판 등) */
     status: string;
 }
+
+/** 도서 정보 불러오기 api 호출 시 응답 데이터타입 입니다. */
+export interface BookResponseType {
+    meta: {
+        /** 현재 페이지가 마지막 페이지인지 여부 */
+        is_end: boolean;
+        /** 중복된 문서를 제외하고, 처음부터 요청 페이지까지의 노출 가능 문서 수 */
+        pageable_count: number;
+        /** 검색된 문서 수 */
+        total_count: number;
+    };
+    documents: BookType[];
+}

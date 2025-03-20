@@ -10,7 +10,9 @@ gap: 20px;
     > input {
         padding: 4px 10px;
         width: 100%;
-        border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
+        &, &:active, &:focus {
+            border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
+        }
     }
 }
 > button {
