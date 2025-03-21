@@ -4,9 +4,16 @@ import { PageTitles } from "@/utils/consts";
 import { SearchHistory } from "../SearchHistory";
 import { useEffect, useRef, useState } from "react";
 import { TitleContainer } from "./style";
+import { TargetType } from "@/defines/global.type";
+
+interface TitleProps {
+    setQuery: (val: string) => void;
+    setTarget: (val: TargetType) => void;
+    totalBooks: number;
+}
 
 /** 현재 경로에 따라 타이틀을 출력합니다. */
-export const Title = ({ totalBooks }: { totalBooks: number; }) => {
+export const Title = ({ setQuery, setTarget, totalBooks }: TitleProps) => {
     const { pathname } = useLocation();
     const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
     const searchRef = useRef<HTMLDivElement>(null); // search div 참조
@@ -34,7 +41,12 @@ export const Title = ({ totalBooks }: { totalBooks: number; }) => {
             <h2>{currentText.title}</h2>
             {pathname === "/" && (
                 <div ref={searchRef}>
-                    <SearchBar isSearchFocused={isSearchFocused} onFocus={() => setIsSearchFocused(true)} />
+                    <SearchBar
+                        setQuery={setQuery}
+                        setTarget={setTarget}
+                        isSearchFocused={isSearchFocused}
+                        onFocus={() => setIsSearchFocused(true)}
+                    />
                     {isSearchFocused && <SearchHistory />}
                 </div>
             )}

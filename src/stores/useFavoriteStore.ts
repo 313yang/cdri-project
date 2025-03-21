@@ -1,4 +1,4 @@
-import { BookType } from "@/defines/book";
+import { BookType } from "@/defines/book.type";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

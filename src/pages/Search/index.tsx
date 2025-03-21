@@ -3,13 +3,13 @@ import { BookList } from "@/components/BookList";
 import { NoResult } from "@/components/NoResult";
 import { Title } from "@/components/Title";
 import fetchBooks from "@/querys/useFetchBooks";
-import { useKeywordState } from "@/stores/useKeywordStore";
 import { BookListWrapper } from "../../styles/bookWrapper.styled";
+import { useState } from "react";
+import { TargetType } from "@/defines/global.type";
 
 export const SearchPage = () => {
-    const keywordList = useKeywordState();
-    const target = "title";
-    const query = keywordList[keywordList.length - 1];
+    const [query, setQuery] = useState<string>("");
+    const [target, setTarget] = useState<TargetType>("title");
 
     const { data, isLoading, error } = useQuery({
         queryKey: ['books', target, query],
@@ -23,7 +23,11 @@ export const SearchPage = () => {
 
 
     return <>
-        <Title totalBooks={totalBooks} />
+        <Title
+            setQuery={setQuery}
+            setTarget={setTarget}
+            totalBooks={totalBooks}
+        />
         {books.length > 0 ?
             <BookListWrapper>
                 {books.map(book => (

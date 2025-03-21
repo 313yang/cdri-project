@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 interface ButtonProps {
     width?: string;
-    bgColor?: "white" | "primary" | "gray" | "lightGray";
+    bg_color?: "white" | "primary" | "gray" | "lightGray";
     color?: "primary" | "secondary" | "subtitle";
     size?: "small" | "medium" | "large";
     border?: "primary" | "secondary" | "subtitle";
@@ -14,7 +14,7 @@ interface ButtonProps {
 export const Button = ({
     width,
     size,
-    bgColor = "primary",
+    bg_color = "primary",
     color,
     border,
     children,
@@ -23,9 +23,9 @@ export const Button = ({
     return <ButtonStyled
         className={`size-${size}`}
         width={width}
-        bgColor={bgColor}
+        $bg_color={bg_color}
         color={color}
-        border={border}
+        $border={border}
         onClick={onClick}
     >{children} </ButtonStyled>;
 };

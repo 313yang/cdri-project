@@ -6,6 +6,7 @@ export const TitleContainer = styled.div`
         margin-bottom: 20px;
     }
     > div {
+        position: relative;
         margin-bottom: 24px;
     }
     > span {

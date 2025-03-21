@@ -1,4 +1,4 @@
-import { BookType } from "@/defines/book";
+import { BookType } from "@/defines/book.type";
 import { BookButtons, BookInfo, BookListContainer, BookTitle, ImageWrapper } from "./style";
 import { Button } from "../ui/Button";
 import { formatNumber, openWindow } from "@/utils/functions";
@@ -34,7 +34,7 @@ export const BookList = ({ book }: BookListProps) => {
             <Button size="medium" onClick={() => openWindow(book.url)} >구매하기</Button>
             <Button size="medium"
                 color="secondary"
-                bgColor="lightGray"
+                bg_color="lightGray"
                 onClick={() => openWindow(book.url)}
             >
                 상세보기

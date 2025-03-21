@@ -12,6 +12,6 @@ export const SearchHistoryWrapper = styled.ul`
     gap: 12px;
     position: absolute;
     width: 100%;
-    bottom: 40px;
+    top: 72px;
     z-index: 1;
     `;

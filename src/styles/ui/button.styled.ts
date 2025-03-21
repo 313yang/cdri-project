@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 export const ButtonStyled = styled.button<{
     width?: string;
-    bgColor: "white" | "primary" | "gray" | "lightGray";
+    $bg_color: "white" | "primary" | "gray" | "lightGray";
     color?: "primary" | "secondary" | "subtitle";
-    border?: "primary" | "secondary" | "subtitle";
+    $border?: "primary" | "secondary" | "subtitle";
 }>`
-    background-color: ${({ bgColor, theme }) => theme.colors[bgColor]};
-    border: 1px solid ${({ border, theme }) => border ? theme.colors.text[border] : "#fff"};
+    background-color: ${({ $bg_color, theme }) => theme.colors[$bg_color]};
+    border: 1px solid ${({ $border, theme }) => $border ? theme.colors.text[$border] : "#fff"};
     color: ${({ color, theme }) => !color ? theme.colors.white : theme.colors.text[color]};
     ${({ theme }) => theme.typography.caption}
     padding: 14px;

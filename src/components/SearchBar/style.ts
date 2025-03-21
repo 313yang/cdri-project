@@ -1,12 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const SearchBarContainer = styled.div`
-    position: relative;
     display: flex;
     align-items: center;
     gap: 16px;
 `;
-export const InputContainer = styled.div<{ isSearchFocused: boolean; }>`
+export const InputContainer = styled.div<{ $border_radius_none: boolean; }>`
     position: relative;
     > img {
         position: absolute;
@@ -19,7 +18,7 @@ export const InputContainer = styled.div<{ isSearchFocused: boolean; }>`
         padding: 18px 51px;
         border-radius: 25px;
         background-color: ${({ theme }) => theme.colors.lightGray};
-        ${({ isSearchFocused }) => isSearchFocused && css`
+        ${({ $border_radius_none }) => $border_radius_none && css`
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         `}

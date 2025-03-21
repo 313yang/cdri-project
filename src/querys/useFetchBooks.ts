@@ -1,8 +1,21 @@
-import { BookType } from "@/defines/book";
+import { BookType } from "@/defines/book.type";
+import { TargetType } from "@/defines/global.type";
 import axios from 'axios';
 
+/** `fetchBooks` api 요청 시 params로 건내주는 타입 */
+interface FetchBooksReqType {
+    target: TargetType;
+    query: string;
+}
+
+/** `fetchBooks` api 응답 값으로 받는 타입 */
+interface FetchBooksRespType {
+    books: BookType[];
+    totalBooks: number;
+}
+
 /** 도서 검색 api 입니다. */
-const fetchBooks = async ({ target, query }: { target: string, query: string; }): Promise<{ books: BookType[], totalBooks: number; }> => {
+const fetchBooks = async ({ target, query }: FetchBooksReqType): Promise<FetchBooksRespType> => {
     try {
         const response = await axios.get('https://dapi.kakao.com/v3/search/book', {
             headers: {
