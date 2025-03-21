@@ -8,7 +8,7 @@ export const SearchHistoryList = ({ keyword }: { keyword: string; }) => {
     return <SearchHistoryListWrapper>
         <p>{keyword}</p>
         <DeleteButton onClick={() => deleteKeyword(keyword)}>
-            <img src={Icon.Close} alt="삭제 아이콘" />
+            <img src={Icon.Delete} alt="삭제 아이콘" />
         </DeleteButton>
     </SearchHistoryListWrapper>;
 };
