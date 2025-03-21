@@ -15,6 +15,9 @@
 
 ## 폴더 구조 및 주요 코드 설명
 > 폴더 구조
+
+![image](https://github.com/user-attachments/assets/ba09fe76-3e62-4fa4-8c20-ba0ec0d6b6aa)
+
 - **`assets`**: 아이콘 svg파일들을 모아둔 폴더입니다.
 - **`components`**: 재사용 가능한 컴포넌트들을 모아두며, `Button`과 `Input` 같은 UI 컴포넌트는 `components/ui`에 정리합니다.
 - **`context`**: 전역 상태를 관리합니다.
@@ -27,6 +30,37 @@
 - **`utils`**: 전역 변수와 유틸리티 함수들을 저장합니다.
 
 > 주요 코드 설명
+```
+/** 검색 기록을 저장하는 함수입니다.  **/
+ setKeywordList: (keyword: string) => {
+    if (!keyword) return; // -> 입력된 키워드가 없다면 바로 반환합니다.
+  
+    const filteredList = get().keywordList.filter(item => item !== keyword); // ->  키워드가 이미 존재하는 경우, 해당 키워드를 제거합니다.
+   
+    if (filteredList.length >= 8) filteredList.shift(); // -> 등록된 검색어가 8개 이상인 경우, 배열 첫번째 요소를 삭제합니다.
+    
+    filteredList.push(keyword); // -> 새로운 키워드를 배열 마지막 요소에 추가합니다.
+
+    set({ keywordList: filteredList }); // -> zustand > persist 를 이용해 localStorage에 필터된 리스트를 저장합니다.
+}
+```
+```
+/** tanstack-query (react-query) > useInfiniteQuery를 사용하여 무한 스크롤 방식으로 데이터를 불러옵니다 **/
+const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
+        queryKey: ["books", target, query],
+        queryFn: ({ pageParam }) => fetchBooks({ target, query, page: pageParam }),
+        initialPageParam: 1, // -> 초기 페이지 설정합니다
+        getNextPageParam: ({ is_end }, pages) => {  // -> 다음 페이지 번호를 계산합니다.
+            const maxPage = Math.ceil(pages[0].totalBooks / 10);
+
+            if (!is_end && pages.length < maxPage) {
+                return pages.length + 1;
+            }
+            return null;
+        },
+    });
+```
+
 
 ## 라이브러리 선택 이유
 - `Vite`: 빠른 개발 환경을 제공하기 위해 사용했습니다..
