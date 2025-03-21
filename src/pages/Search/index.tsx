@@ -1,37 +1,64 @@
-import { useQuery } from "@tanstack/react-query";
+import { Fragment, useEffect, useState } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
 import { BookList } from "@/components/BookList";
 import { NoResult } from "@/components/NoResult";
 import { Title } from "@/components/Title";
 import fetchBooks from "@/querys/useFetchBooks";
-import { BookListWrapper } from "../../styles/bookWrapper.styled";
-import { useState } from "react";
 import { TargetType } from "@/defines/global.type";
+import { BookListWrapper } from "../../styles/bookWrapper.styled";
 
 export const SearchPage = () => {
     const [query, setQuery] = useState<string>("");
     const [target, setTarget] = useState<TargetType>("title");
+    const { ref, inView } = useInView();
 
-    const { data, isLoading } = useQuery({
-        queryKey: ['books', target, query],
-        queryFn: () => fetchBooks({ target, query }),
+    const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
+        queryKey: ["books", target, query],
+        queryFn: ({ pageParam }) => fetchBooks({ target, query, page: pageParam }),
+        initialPageParam: 1, // 첫 페이지 번호 초기화!
+        getNextPageParam: (lastPage, pages) => {
+            // 한 페이지당 최대 10개까지의 영화 정보를 가져옴!
+            // 마지막 페이지 번호 계산!
+            const maxPage = Math.ceil(pages[0].totalBooks / 10);
+
+            // 다음 페이지가 있으면, 다음 페이지 번호 반환!
+            if (!lastPage.is_end && pages.length < maxPage) {
+                return pages.length + 1;
+            }
+            // 다음 페이지가 없으면 undefined | null 반환!
+            return undefined;
+        },
     });
 
-    const { books, totalBooks } = data || { books: [], totalBooks: 0 };
+    useEffect(() => {
+        /** 화면 최하단 도달 시 도서 다음페이지 fetch */
+        if (inView && hasNextPage) {
+            fetchNextPage();
+        }
+    }, [inView, hasNextPage, fetchNextPage]);
 
+
+    const pages = data?.pages || [{ books: [], totalBooks: 0 }];
     return <>
         <Title
             setQuery={setQuery}
             setTarget={setTarget}
-            totalBooks={totalBooks}
+            totalBooks={data?.pages[0].totalBooks || 0}
         />
-        {books.length > 0 ?
+        {pages[0].books.length > 0 ?
             <BookListWrapper>
                 {isLoading && <div>Loading...</div>}
-                {books.map(book => (
-                    <BookList key={book.isbn} book={book} />
+                {data?.pages.map((page, index) => (
+                    <Fragment key={index}>
+                        {page.books.map(book => (
+                            <BookList key={book.isbn} book={book} />
+                        ))}
+                    </Fragment>
                 ))}
             </BookListWrapper>
             : <NoResult desc="검색된 결과가 없습니다." />
         }
+        <div ref={ref} style={{ height: "20px" }} />
     </>;
 };
