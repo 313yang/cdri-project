@@ -1,4 +1,4 @@
-import { DropdownOptionType, TargetType } from "@/defines/global.type";
+import { DropdownOptionType } from "@/defines/global.type";
 import { DropdownContainer, DropdownOptions } from "@/styles/ui/dropdown.styled";
 import { useState } from "react";
 import { Icon } from "./Icons";
@@ -7,7 +7,7 @@ interface DropdownProps {
     /** 드롭다운 옵션 목록입니다. */
     options: DropdownOptionType[];
     /** 드롭다운 옵션 값을 설정합니다. */
-    onSelect(target: TargetType): void;
+    onSelect(target: string): void;
 }
 
 export const Dropdown = ({

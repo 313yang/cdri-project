@@ -3,31 +3,31 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface FavoriteStoreProps {
+    /** 내가 찜한 책 목록 */
     favoriteList: BookType[];
+    /** 내가 찜한 책 목록에 추가합니다. */
     setFavoriteList: (book: BookType) => void;
+    /** 내가 찜한 책 목록에서 삭제합니다. */
     deleteFavorite: (idx: string) => void;
 }
 
 /**
  * 찜한 책 목록을 불러오거나 책을 찜목록에 추가/삭제합니다.
+ * @description 변경사항을 `localStorage`에 저장합니다.
  */
 const useFavoriteStore = create(
     persist<FavoriteStoreProps>(
         (set, get) => ({
             favoriteList: [],
-            /** 내가 찜한 책 목록에 추가합니다. */
             setFavoriteList: (book: BookType) => {
                 if (!book) return;
-                const currentList = get().favoriteList;
-                const newList = [...currentList];
-                newList.push(book);
-                set({ favoriteList: newList });
+                const cloneList = [...get().favoriteList]; // 원본 배열 수정안되도록 복사.
+                cloneList.push(book);
+                set({ favoriteList: cloneList });
             },
-            /** 내가 찜한 책 목록에서 삭제합니다. */
             deleteFavorite: (idx: string) => {
-                const currentList = get().favoriteList;
-                const newList = currentList.filter((x) => x.isbn !== idx);
-                set({ favoriteList: newList });
+                const filteredList = get().favoriteList.filter((x) => x.isbn !== idx);
+                set({ favoriteList: filteredList });
             },
         }),
         {

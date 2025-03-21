@@ -11,16 +11,12 @@ export const SearchPage = () => {
     const [query, setQuery] = useState<string>("");
     const [target, setTarget] = useState<TargetType>("title");
 
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['books', target, query],
         queryFn: () => fetchBooks({ target, query }),
     });
 
     const { books, totalBooks } = data || { books: [], totalBooks: 0 };
-
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>An error occurred: {error.message}</div>;
-
 
     return <>
         <Title
@@ -30,6 +26,7 @@ export const SearchPage = () => {
         />
         {books.length > 0 ?
             <BookListWrapper>
+                {isLoading && <div>Loading...</div>}
                 {books.map(book => (
                     <BookList key={book.isbn} book={book} />
                 ))}

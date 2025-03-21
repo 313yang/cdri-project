@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { SearchBar } from "@/components/SearchBar";
 import { PageTitles } from "@/utils/consts";
 import { SearchHistory } from "../SearchHistory";
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { TitleContainer } from "./style";
 import { TargetType } from "@/defines/global.type";
 
@@ -22,7 +22,7 @@ export const Title = ({ setQuery, setTarget, totalBooks }: TitleProps) => {
     const currentText = PageTitles.find((text) => text.path === pathname)
         || { title: PageTitles[0].title, result: PageTitles[0].result }; // 기본 값으로 "도서 검색" 설정.
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         /** searchRef 이외의 element 클릭 시 포커스가 off 됩니다. */
         const handleClickOutside = (event: MouseEvent) => {
             if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -45,7 +45,7 @@ export const Title = ({ setQuery, setTarget, totalBooks }: TitleProps) => {
                         setQuery={setQuery}
                         setTarget={setTarget}
                         isSearchFocused={isSearchFocused}
-                        onFocus={() => setIsSearchFocused(true)}
+                        onFocus={(val) => setIsSearchFocused(val)}
                     />
                     {isSearchFocused && <SearchHistory />}
                 </div>

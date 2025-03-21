@@ -1,4 +1,4 @@
-import { Icon } from "../ui/Icons";
+import { Icon } from "@/ui/Icons";
 import { NoResultContainer } from "./style";
 
 export const NoResult = ({ desc }: { desc: string; }) => {

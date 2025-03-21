@@ -1,17 +1,12 @@
 import { useState } from "react";
-import { Button } from "../ui/Button";
-import { Dropdown } from "../ui/Dropdown";
-import { Input } from "../ui/Input";
-import { Popup } from "../ui/Popup";
-import { SearchDetailPopupContent } from "./style";
-import { DropdownOptionType, TargetType } from "@/defines/global.type";
+import { TargetType } from "@/defines/global.type";
 import { setKeywordListAction } from "@/stores/useKeywordStore";
-
-const selectOptions: DropdownOptionType[] = [
-    { target: "title", name: "제목" },
-    { target: "publisher", name: "출판사" },
-    { target: "person", name: "저자명" }
-];
+import { selectOptions } from "@/utils/consts";
+import { Button } from "@/ui/Button";
+import { Dropdown } from "@/ui/Dropdown";
+import { Input } from "@/ui/Input";
+import { Popup } from "@/ui/Popup";
+import { SearchDetailPopupContent } from "./style";
 
 interface SearchDetailPopupProps {
     setQuery: (val: string) => void;
@@ -24,7 +19,7 @@ export const SearchDetailPopup = ({ setQuery, setTarget, onClose }: SearchDetail
     const [option, setOptions] = useState<TargetType>("title");
 
 
-    const handleSearch = async () => {
+    const handleSearch = () => {
         setKeywordList(keyword);
         setQuery(keyword);
         setKeyword("");
@@ -35,7 +30,7 @@ export const SearchDetailPopup = ({ setQuery, setTarget, onClose }: SearchDetail
     return <Popup top={50} right={230} onClose={onClose}>
         <SearchDetailPopupContent>
             <div>
-                <Dropdown options={selectOptions} onSelect={(val) => setOptions(val)} />
+                <Dropdown options={selectOptions} onSelect={(val) => setOptions(val as TargetType)} />
                 <Input
                     placeholder="검색어 입력"
                     value={keyword}

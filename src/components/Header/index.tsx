@@ -1,3 +1,4 @@
+import { PageTitles } from "@/utils/consts";
 import { HeaderComponent, NavList } from "./style";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -13,18 +14,15 @@ export const Header = () => {
         <h1>CERTICO BOOKS</h1>
         <nav>
             <ul>
-                <NavList
-                    selected={pathname === "/"}
-                    onClick={() => navigate("/")}
-                >
-                    도서 검색
-                </NavList>
-                <NavList
-                    selected={pathname === "/favorite"}
-                    onClick={() => navigate("/favorite")}
-                >
-                    내가 찜한 책
-                </NavList>
+                {PageTitles.map(({ title, path }) => (
+                    <NavList
+                        key={path}
+                        selected={pathname === path}
+                        onClick={() => navigate(path)}
+                    >
+                        {title}
+                    </NavList>
+                ))}
             </ul>
         </nav>
     </HeaderComponent>;
