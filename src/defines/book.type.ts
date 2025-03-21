@@ -1,3 +1,5 @@
+import { TargetType } from "./global.type";
+
 export interface BookType {
     /** 도서 제목 */
     title: string;
@@ -25,8 +27,16 @@ export interface BookType {
     status: string;
 }
 
+
+/** 도서 정보 불러오기 api 요청 시 params로 건내주는 데이터 타입 */
+export interface FetchBooksReqType {
+    target: TargetType;
+    query: string;
+    page: number;
+}
+
 /** 도서 정보 불러오기 api 호출 시 응답 데이터타입 입니다. */
-export interface BookResponseType {
+export interface FetchBooksRespType {
     meta: {
         /** 현재 페이지가 마지막 페이지인지 여부 */
         is_end: boolean;
@@ -36,4 +46,11 @@ export interface BookResponseType {
         total_count: number;
     };
     documents: BookType[];
+}
+
+/** 도서 정보 반환하는 데이터 타입입니다. */
+export interface FetchBooksType {
+    books: BookType[];
+    totalBooks: number;
+    is_end: boolean;
 }
