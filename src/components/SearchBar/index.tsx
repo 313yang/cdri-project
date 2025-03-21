@@ -8,8 +8,8 @@ import { Button } from "@/ui/Button";
 import { TargetType } from "@/defines/global.type";
 
 interface SearchBarProps {
-    setQuery: (val: string) => void; // 엔터 이벤트 발생 시 검색되는 query.
-    setTarget: (val: TargetType) => void;
+    setQuery?: (val: string) => void; // 엔터 이벤트 발생 시 검색되는 query.
+    setTarget?: (val: TargetType) => void;
     isSearchFocused: boolean; // 검색기록 창 열려있는지 여부.
     onFocus: (val: boolean) => void,
 }
@@ -23,7 +23,7 @@ export const SearchBar = ({ setQuery, setTarget, isSearchFocused, onFocus }: Sea
     const ref = useRef(null);
     const handleSearch = () => {
         setKeywordList(keyword);
-        setQuery(keyword);
+        setQuery && setQuery(keyword);
         setKeyword("");
     };
 

@@ -16,14 +16,11 @@ export const SearchPage = () => {
     const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
         queryKey: ["books", target, query],
         queryFn: ({ pageParam }) => fetchBooks({ target, query, page: pageParam }),
-        initialPageParam: 1, // 첫 페이지 번호 초기화!
-        getNextPageParam: (lastPage, pages) => {
-            // 한 페이지당 최대 10개까지의 영화 정보를 가져옴!
-            // 마지막 페이지 번호 계산!
+        initialPageParam: 1,
+        getNextPageParam: ({ is_end }, pages) => {
             const maxPage = Math.ceil(pages[0].totalBooks / 10);
 
-            // 다음 페이지가 있으면, 다음 페이지 번호 반환!
-            if (!lastPage.is_end && pages.length < maxPage) {
+            if (!is_end && pages.length < maxPage) {
                 return pages.length + 1;
             }
             // 다음 페이지가 없으면 undefined | null 반환!

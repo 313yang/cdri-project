@@ -9,10 +9,11 @@ import { Popup } from "@/ui/Popup";
 import { SearchDetailPopupContent } from "./style";
 
 interface SearchDetailPopupProps {
-    setQuery: (val: string) => void;
-    setTarget: (val: TargetType) => void;
+    setQuery?: (val: string) => void;
+    setTarget?: (val: TargetType) => void;
     onClose(): void;
 }
+/** `상세검색` 팝업 컴포넌트 입니다. */
 export const SearchDetailPopup = ({ setQuery, setTarget, onClose }: SearchDetailPopupProps) => {
     const setKeywordList = setKeywordListAction();
     const [keyword, setKeyword] = useState<string>("");
@@ -21,9 +22,9 @@ export const SearchDetailPopup = ({ setQuery, setTarget, onClose }: SearchDetail
 
     const handleSearch = () => {
         setKeywordList(keyword);
-        setQuery(keyword);
+        setQuery && setQuery(keyword);
         setKeyword("");
-        setTarget(option);
+        setTarget && setTarget(option);
         onClose();
     };
 

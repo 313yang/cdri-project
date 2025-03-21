@@ -7,8 +7,8 @@ import { TitleContainer } from "./style";
 import { TargetType } from "@/defines/global.type";
 
 interface TitleProps {
-    setQuery: (val: string) => void;
-    setTarget: (val: TargetType) => void;
+    setQuery?: (val: string) => void;
+    setTarget?: (val: TargetType) => void;
     totalBooks: number;
 }
 
