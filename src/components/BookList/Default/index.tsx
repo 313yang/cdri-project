@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icons";
 import { formatNumber, openWindow } from "@/utils/functions";
-import { BookListContainer, BookInfo, ImageWrapper, BookTitle, BookButtons } from "../style";
 import { BookType } from "@/defines/book.type";
+import { noImageUrl } from "@/utils/consts";
+import { BookListContainer, BookInfo, ImageWrapper, BookTitle, BookButtons } from "../style";
 
 interface BookListDefaultProps {
     book: BookType;
@@ -25,7 +26,7 @@ export const BookListDefault = ({
                 <button onClick={() => isFavorite ? deleteFavorite(book.isbn) : addFavorite(book)}>
                     <img className="fav" src={(isFavorite ? Icon.Fill : Icon.Line)} alt="하트 아이콘" />
                 </button>
-                <img className="thumbnail" src={book.thumbnail} alt="책 이미지" />
+            <img className="thumbnail" src={book.thumbnail || noImageUrl} alt="책 이미지" />
             </ImageWrapper>
             <BookTitle>
                 <h3>{book.title}</h3>

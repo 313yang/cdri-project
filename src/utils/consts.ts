@@ -17,3 +17,6 @@ export const selectOptions: DropdownOptionType[] = [
     { target: "publisher", name: "출판사" },
     { target: "person", name: "저자명" }
 ];
+
+/** 도서 이미지가 없을 시 노출될 이미지 url입니다 */
+export const noImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9a-z8FDeUrX6dCcx1RbTZrfmPbAtUvfcKOA&s"

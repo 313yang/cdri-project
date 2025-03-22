@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Icon } from "@/ui/Icons";
 import { Input } from "@/ui/Input";
 import { InputContainer, SearchBarContainer } from "./style";
@@ -20,14 +20,15 @@ export const SearchBar = ({ setQuery, setTarget, isSearchFocused, onFocus }: Sea
     const [keyword, setKeyword] = useState<string>("");
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const keywordList = useKeywordState(); // 검색 목록 리스트
-    const ref = useRef(null);
+
     const handleSearch = () => {
         setKeywordList(keyword);
         setQuery && setQuery(keyword);
         setKeyword("");
+        onFocus(false);
     };
 
-    return <SearchBarContainer ref={ref}>
+    return <SearchBarContainer>
         <InputContainer $border_radius_none={isSearchFocused && keywordList.length > 0}>
             <img src={Icon.Search} alt="돋보기 아이콘" />
             <Input
