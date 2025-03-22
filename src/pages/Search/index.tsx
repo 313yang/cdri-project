@@ -8,6 +8,7 @@ import fetchBooks from "@/querys/useFetchBooks";
 import { TargetType } from "@/defines/global.type";
 import { BookListWrapper } from "../../styles/bookWrapper.styled";
 
+/** 도서 검색 페이지 (첫 화면)입니다. */
 export const SearchPage = () => {
     const [query, setQuery] = useState<string>("");
     const [target, setTarget] = useState<TargetType>("title");
@@ -19,12 +20,9 @@ export const SearchPage = () => {
         initialPageParam: 1,
         getNextPageParam: ({ is_end }, pages) => {
             const maxPage = Math.ceil(pages[0].totalBooks / 10);
+            const isNextPage = !is_end && pages.length < maxPage; // 다음페이지가 있는지 여부
 
-            if (!is_end && pages.length < maxPage) {
-                return pages.length + 1;
-            }
-            // 다음 페이지가 없으면 undefined | null 반환!
-            return undefined;
+            return isNextPage ? pages.length + 1 : null;
         },
     });
 

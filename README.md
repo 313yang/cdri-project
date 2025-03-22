@@ -50,13 +50,11 @@ const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery({
         queryKey: ["books", target, query],
         queryFn: ({ pageParam }) => fetchBooks({ target, query, page: pageParam }),
         initialPageParam: 1, // -> 초기 페이지 설정합니다
-        getNextPageParam: ({ is_end }, pages) => {  // -> 다음 페이지 번호를 계산합니다.
+        getNextPageParam: ({ is_end }, pages) => {
             const maxPage = Math.ceil(pages[0].totalBooks / 10);
+            const isNextPage = !is_end && pages.length < maxPage; // 다음페이지가 있는지 여부를 체크합니다.
 
-            if (!is_end && pages.length < maxPage) {
-                return pages.length + 1;
-            }
-            return null;
+            return isNextPage ? pages.length + 1 : null;
         },
     });
 ```

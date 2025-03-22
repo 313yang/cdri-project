@@ -4,6 +4,7 @@ import { Title } from "@/components/Title";
 import { useFavoriteListState } from "@/stores/useFavoriteStore";
 import { BookListWrapper } from "@/styles/bookWrapper.styled";
 
+/** 내가 찜한 책 페이지 입니다. */
 export const FavoritePage = () => {
     const favoriteList = useFavoriteListState();
 
@@ -17,6 +18,5 @@ export const FavoritePage = () => {
             </BookListWrapper>
             : <NoResult desc="찜한 책이 없습니다." />
         }
-
     </>;
 };
